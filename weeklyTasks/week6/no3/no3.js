@@ -3,12 +3,15 @@ const defaultInput = document.querySelector('#default');
 const debounceInput = document.querySelector('#debounce');
 
 input.addEventListener('input', (e) => {
-    defaultInput.textContent = `Default: ${input.value}`;
+    defaultInput.textContent = e.target.value;
 });
 
-input.addEventListener('input', debounce(() => {
-    debounceInput.textContent = `Debounce: ${input.value}`;
-}, 1000));
+const doDebounce = debounce((value) => {
+    debounceInput.textContent = value;
+}, 1000)
+input.addEventListener('input', (e) => {
+    doDebounce(e.target.value);
+});
 
 function debounce(callback, delay = 1000) {
     let timer;
