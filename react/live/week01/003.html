@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>專注點分離</h1>
+    <p>----------</p>
+    <table>
+        <thead>
+            <tr>
+            <th width="200">品名</th>
+            <th>單價</th>
+            <th>數量</th>
+            <th width="150">小計</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <tr>
+                <td>綠色馬卡龍</td>
+                <td>120</td>
+                <td>3</td>
+                <td>$ 120</td>
+            </tr>
+            <tr>
+                <td>粉係馬卡龍</td>
+                <td>120</td>
+                <td>2</td>
+                <td>$ 240</td>
+            </tr>
+            <tr>
+                <td>甜蜜左擁右抱</td>
+                <td>200</td>
+                <td>7</td>
+                <td>$ 1400</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+            <td colspan="3">總計：</td>
+            <td>NT$ 1760</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <script>
+        const data = [
+            {
+                title: '綠色馬卡龍',
+                price: 120,
+                count: 3
+            },
+            {
+                title: '粉系馬卡龍',
+                price: 120,
+                count: 2
+            },
+            {
+                title: '甜蜜左擁右抱',
+                price: 200,
+                count: 7
+            },
+            {
+                title: '新增的資料',
+                price: 199,
+                count: 10
+            },
+        ];
+        const tbody = document.querySelector('#tbody');
+        const table = data.map((item) => {
+            return `<tr>
+                <td>${item.title}</td>
+                <td>
+                    ${item.price}
+                </td>
+                <td>
+                    ${item.count}
+                </td>
+                <td>$ 120</td>
+                </tr>`
+        });
+        tbody.innerHTML = table.join('');
+        // 總計先不示範，先了解關注點分離
+    </script>
+</body>
+</html>

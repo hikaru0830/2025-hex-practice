@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React 函式庫 -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- React DOM操作 -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 載入 Babel 獨立版本，將 JSX 和 ES6+ 語法轉譯為瀏覽器可執行的 JavaScript -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <!-- React 建構方式 -->
+    <!-- 1. HTML => CDN(少見，主要是教學用) -->
+    <!-- 2. Vite => 前端常用的方法，SPA(常見) -->
+    <!-- 3. Next.js => SSR 前端整合形式(React / Cloudflare)，React目前正在發展的方向(可能是未來趨勢吧我想) -->
+
+    <div id="app"></div>
+
+    <script type="text/babel">
+        // const data = [
+        //     {
+        //         title: '綠色馬卡龍',
+        //         price: 120,
+        //         count: 3
+        //     },
+        //     {
+        //         title: '粉系馬卡龍',
+        //         price: 120,
+        //         count: 2
+        //     },
+        //     {
+        //         title: '甜蜜左擁右抱',
+        //         price: 200,
+        //         count: 7
+        //     },
+        //     {
+        //         title: '新增的資料',
+        //         price: 199,
+        //         count: 10
+        //     },
+        // ];
+        //取出 useState 方法
+        const { useState } = React;
+        // 1. 定義根元件App
+        function App() {
+            const text = '卡斯柏讚讚';
+            const num = 11;
+             //養成好習慣return要加括號，因為return後面如果換行會自動補分號，函式就結束了。
+            return (
+                <div>
+                    <div className="box">123</div>
+                    <label htmlFor="gg"></label>
+                    <img src="https://picsum.photos/300/200" alt=""/> 
+                    <input type="text"/>
+                    {text}
+                    <br/>
+                    '表達式：'
+                    {
+                        //表達式 (F12上會回傳結果的就是表達式)
+                        num > 10 ? '太大' : '太小'
+                    }
+                </div>
+            );
+            // img input 等本身沒有結尾的標籤需補上/結尾
+
+            // ＊JSX 裡HTML屬性會使用小駝峰形式
+            // class => className
+            // colspan => colSpan
+            // <label for="gg"> => <label htmlFor="gg">
+        }
+
+        const root = ReactDOM.createRoot(document.querySelector('#app'));
+        root.render(<App/>);
+    </script>
+</body>
+</html>

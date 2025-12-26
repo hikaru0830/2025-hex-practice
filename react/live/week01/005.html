@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React 函式庫 -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- React DOM操作 -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 載入 Babel 獨立版本，將 JSX 和 ES6+ 語法轉譯為瀏覽器可執行的 JavaScript -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <!-- React 建構方式 -->
+    <!-- 1. HTML => CDN(少見，主要是教學用) -->
+    <!-- 2. Vite => 前端常用的方法，SPA(常見) -->
+    <!-- 3. Next.js => SSR 前端整合形式(React / Cloudflare)，React目前正在發展的方向(可能是未來趨勢吧我想) -->
+
+    <div id="app"></div>
+
+    <script type="text/babel">
+        // const data = [
+        //     {
+        //         title: '綠色馬卡龍',
+        //         price: 120,
+        //         count: 3
+        //     },
+        //     {
+        //         title: '粉系馬卡龍',
+        //         price: 120,
+        //         count: 2
+        //     },
+        //     {
+        //         title: '甜蜜左擁右抱',
+        //         price: 200,
+        //         count: 7
+        //     },
+        //     {
+        //         title: '新增的資料',
+        //         price: 199,
+        //         count: 10
+        //     },
+        // ];
+        //取出 useState 方法
+        const { useState } = React;
+        // 1. 定義根元件App
+        function App() {
+            const [data, setData] = useState([
+                {
+                    title: '綠色馬卡龍',
+                    price: 120,
+                    count: 3
+                },
+                {
+                    title: '粉系馬卡龍',
+                    price: 120,
+                    count: 2
+                },
+                {
+                    title: '甜蜜左擁右抱',
+                    price: 200,
+                    count: 7
+                },
+                {
+                    title: '新增的資料',
+                    price: 199,
+                    count: 10
+                },
+            ])
+            const [count, setCount] = useState(10);
+            const [temp, setTemp] = useState(10);
+
+            function AddCount(number) {
+                setCount(count + number);
+            }
+
+            function removeItem(title) {
+                // 方法一：老師 Demo 翻車XD
+                // 需要深拷貝data為newData的原因，是因為新舊state參考位置一樣的話，React會認為一樣的東西不需要重新渲染
+                const index = data.findIndex((item) => {
+                    return item.title === title;
+                });
+                console.log(index, title);
+                const newData = [...data]; //不能改動到原state
+                newData.splice(index, 1);
+                setData(newData);
+                
+                // 方法二：主流 filter
+                // const newData = data.filter((item) => {
+                //     return title !== item.title;
+                // });
+                // setData(newData);
+
+            }
+
+            const text = '卡斯柏讚讚';
+            const num = 11;
+             //養成好習慣return要加括號，因為return後面如果換行會自動補分號，函式就結束了。
+            return (
+                <div>
+                    <p>----- hook -----</p>
+                    <h1>{count}</h1>
+                    <button type="button" onClick={() => AddCount(5)}>按我</button>
+                    <p>----------</p>
+                    <table>
+                        <thead>
+                            <tr>
+                            <th width="200">品名</th>
+                            <th>單價</th>
+                            <th>數量</th>
+                            <th width="150">小計</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            {
+                                data.map((item, key) => {
+                                    return (
+                                        <tr key={key}>
+                                            <td>{item.title}</td>
+                                            <td>${item.price}</td>
+                                            <td>{item.count}</td>
+                                            <td>${item.price * item.count}
+                                                <button type="button" onClick={() => {
+                                                    setTemp(item);
+                                                }}>按我</button>
+                                                <button type="button" onClick={() => removeItem(item.title)}>刪除</button>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                            <td colSpan="3">總計：</td>
+                            <td>NT$ 1760</td> 
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <hr/>
+                    <h2>顯示資料</h2>
+                    <p>{temp.title}</p>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.querySelector('#app'));
+        root.render(<App/>);
+    </script>
+</body>
+</html>

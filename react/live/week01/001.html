@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解構</title>
+</head>
+<body>
+    <h1>解構</h1>
+    <script>
+        const colors = ['red', 'green', 'blue'];
+        const user = {
+            name: '漂亮姊姊',
+            age: 21,
+            favorute: '鍋燒意麵'
+        };
+        // 解構：
+        // 解構用中括號或大括號式依據前後對應(陣列對陣列，物件對物件)
+        // 陣列解構：按照順序
+        const [r, g, b] = colors;
+        console.log(r, g, b);
+
+        // 物件解構：對應屬性
+        console.log(user.name);
+        console.log(user.age);
+        const {name, age} = user;
+        console.log('-----');
+        console.log(name, age);
+    </script>
+</body>
+</html>

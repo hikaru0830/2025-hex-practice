@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>陣列方法</h1>
+    <p>----------</p>
+    <ul id="ul"></ul>
+
+    <script>
+        const ul = document.querySelector('#ul');
+        let people = [
+            {
+                name: '卡斯柏',
+                like: '鍋燒意麵',
+                price: 95
+            },
+            {
+                name: '瑞',
+                like: '炒麵',
+                price: 80
+            },
+            {
+                name: '小明',
+                like: '黑胡椒燴飯',
+                price: 120
+            },
+            {
+                name: '漂亮姊姊',
+                like: '生菜沙拉',
+                price: 80
+            },
+        ]
+        console.log(people);
+        // ---------- forEach ----------
+        let listContent = '';
+        people.forEach((person, key) => {
+            listContent += `<li>${person.name} 喜歡吃 ${person.like}</li>`
+        });
+        console.log('forEach', listContent);
+
+        console.log('-----');
+
+        // ---------- map ----------
+        // ＊ 回傳 key就是index
+
+        // const newPeople = people.map((person, key) => {
+        //     const templateString = `<li>${person.name} 喜歡吃 ${person.like}</li>`;
+        //     return templateString;
+        // });
+        // console.log(newPeople);
+        // ul.innerHTML = newPeople.join('');
+
+        // ＊更精簡
+        ul.innerHTML = people.map((person, key) => `<li>${person.name} 喜歡吃 ${person.like}</li>`)
+                        .join('');
+
+        // ---------- filter ----------
+        // filter 裡面要 return 為"真"的值，就是條件成立的會留下
+        // 要注意truthy / falsy (return 1會全留下， return 0會全濾掉)
+        const filterPeople = people.filter((person, key) => {
+            return person.price > 90;
+        });
+        console.log(filterPeople);
+
+    </script>
+</body>
+</html>
