@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="email" id="email">
+        <input type="password" id="password">
+        <button id="login">登入</button>
+    </div>
+    <div>
+        <button id="check">確認登入是否成功</button>
+        <button id="getProducts">取得後台的產品列表</button>
+    </div>
+    <script>
+        const url = 'https://ec-course-api.hexschool.io/v2';
+        const apiPath = 'hikaruxienz';
+
+        //1. admin
+        //2. 用戶端
+        (async () => {
+            const res = await axios.get(`${url}/api/${apiPath}/products/all`);
+            console.log(res);
+        })()
+
+
+    </script>
+</body>
+</html>

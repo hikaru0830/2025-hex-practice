@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // JS是同步語言
+        const promiseSetTimeout = (status) =>{
+
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (status) {
+                        resolve('promiseSetTimeout 成功')
+                    }
+                    else {
+                        reject('promiseSetTimeout 失敗')
+                    }
+                }, 10);
+            });
+        }
+
+        //async/await async方法一定async/await兩個字都要出現
+        async function fn() {
+            const data = await promiseSetTimeout(1); //一定要是promise
+            console.log('取得結果:', data);
+
+        }
+        fn();
+        // #1 沒有Async
+        // #2 沒有await
+        // #3 await 並非 promise
+        // 以上三者皆錯
+
+        // async await 延伸寫法
+        const fn2 = async () => {
+            // 錯誤解決方案
+            try {
+                const data = await promiseSetTimeout(0);
+                console.log('fn2取得結果:', data);
+                console.log('fn2 success');
+            }
+            catch (err) {
+                console.log(Error);
+                console.log('fn2 error');
+            }
+        }
+        fn2();
+
+        // 三種function寫法
+        // #1 function fn() {...}
+        // #2 const fn = () => {...} 這種function宣告方式是不會提升的，要小心~不能在宣告前執行fn()
+        // #3 立即函式 初始化運行 (function() {...})()
+        (async function() {
+            console.log('這是立即函式');
+        })();
+    </script>
+</body>
+</html>
