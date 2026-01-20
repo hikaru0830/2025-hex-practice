@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import './assets/all.scss'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -32,4 +33,19 @@ function App() {
   )
 }
 
-export default App
+function MyApp() {
+  let num = 100;
+  return (
+    <>
+      <h1>H1</h1>
+      <h2>H2</h2>
+      <div
+        className={'testDiv'}
+        style={{
+          width: num + 'px',
+          height: `${num}px`,
+        }}></div>
+    </>
+  );
+}
+export default MyApp
