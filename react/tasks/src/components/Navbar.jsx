@@ -18,6 +18,9 @@ function App() {
                         <li className="nav-item">
                             <Link className="nav-link active" to="/week2">Week2</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link active" to="/lottie">Lottie</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
