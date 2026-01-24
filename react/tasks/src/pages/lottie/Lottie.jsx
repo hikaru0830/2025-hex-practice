@@ -11,7 +11,7 @@ function App() {
             src={LottieVan}
             background="transparent"
             speed="1"
-            style={{ width: '1920px'}}
+            style={{ width: 'auto'}}
             loop="true"
             renderConfig={{
                 autoResize: true, 
@@ -21,7 +21,7 @@ function App() {
             data={JSON.stringify(Bicycle)}
             background="transparent"
             speed="1"
-            style={{ width: '1920px'}}
+            style={{ width: 'auto'}}
             loop="true"
             renderConfig={{
                 autoResize: true, 
